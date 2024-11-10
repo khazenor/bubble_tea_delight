@@ -2,6 +2,7 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "bubble_tea_delight:item/example_item"
+    "layer0": "bubble_tea_delight:item/example_item",
+    "layer1": "bubble_tea_delight:item/food_book"
   }
 }
