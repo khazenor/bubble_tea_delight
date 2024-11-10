@@ -34,16 +34,20 @@ public class ItemRegistry {
         .alwaysEdible().nutrition(1).saturationModifier(2f).build()))
     );
     this.ITEMS.register(this.modEventBus);
+    this.registerCreativeTabs();
+  }
 
+  private void registerCreativeTabs() {
     for (DeferredItem<Item> item: this.registeredItems) {
-      CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
+      this.CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
               .title(Component.translatable("itemGroup.examplemod")) //The language key for the title of your CreativeModeTab
               .withTabsBefore(CreativeModeTabs.COMBAT)
               .icon(() -> item.get().getDefaultInstance())
               .displayItems((parameters, output) -> {
                 output.accept(item.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
               }).build());
-      CREATIVE_MODE_TABS.register(modEventBus);
+      this.CREATIVE_MODE_TABS.register(modEventBus);
     }
+
   }
 }
