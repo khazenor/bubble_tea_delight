@@ -1,4 +1,4 @@
-package khazenor.bubble_tea_delight;
+package khazenor.bubble_tea_delight.registry;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;

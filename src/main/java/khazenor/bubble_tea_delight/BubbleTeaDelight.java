@@ -1,5 +1,6 @@
 package khazenor.bubble_tea_delight;
 
+import khazenor.bubble_tea_delight.registry.ItemRegistry;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
