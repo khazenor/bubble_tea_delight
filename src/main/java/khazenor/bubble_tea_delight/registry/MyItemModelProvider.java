@@ -12,5 +12,9 @@ public class MyItemModelProvider extends ItemModelProvider {
 
   @Override
   protected void registerModels() {
+    System.out.println("registerModels");
+    withExistingParent("example_item", mcLoc("item/generated"))
+      .texture("layer0", "bubble_tea_delight:item/drinks/tea/tiequanyin_oolong")
+      .texture("layer1", "bubble_tea_delight:item/drinks/ice/3");
   }
 }

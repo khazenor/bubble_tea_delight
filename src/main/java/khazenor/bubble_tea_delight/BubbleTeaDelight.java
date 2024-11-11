@@ -1,5 +1,6 @@
 package khazenor.bubble_tea_delight;
 
+import khazenor.bubble_tea_delight.events.EventHandler;
 import khazenor.bubble_tea_delight.registry.ItemRegistry;
 import khazenor.bubble_tea_delight.registry.MyItemModelProvider;
 import net.minecraft.data.DataGenerator;
@@ -24,18 +25,8 @@ public class BubbleTeaDelight
     {
       ItemRegistry itemRegistry = new ItemRegistry(MODID, modEventBus);
       itemRegistry.register();
-    }
-
-    @SubscribeEvent
-    public void gatherData(GatherDataEvent event) {
-      DataGenerator generator = event.getGenerator();
-      PackOutput output = generator.getPackOutput();
-      ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
-
-      // other providers here
-      generator.addProvider(
-        event.includeClient(),
-        new MyItemModelProvider(output, existingFileHelper)
-      );
+      //modEventBus.register(EventHandler.class);
+      modEventBus.addListener(EventHandler::gatherData);
+      System.out.println("BubbleTeaDelightClass");
     }
 }

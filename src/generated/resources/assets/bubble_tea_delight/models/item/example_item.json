@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "bubble_tea_delight:item/drinks/tea/tiequanyin_oolong",
+    "layer1": "bubble_tea_delight:item/drinks/ice/3"
+  }
+}
