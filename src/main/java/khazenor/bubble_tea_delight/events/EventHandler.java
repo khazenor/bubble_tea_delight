@@ -11,7 +11,6 @@ public class EventHandler {
 
   @SubscribeEvent
   public static void gatherData(GatherDataEvent event) {
-    System.out.println("gatherData");
     DataGenerator generator = event.getGenerator();
     PackOutput output = generator.getPackOutput();
     ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
