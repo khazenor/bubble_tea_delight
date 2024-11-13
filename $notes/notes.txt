@@ -1,0 +1,71 @@
+# drinkable boba
+## Boba drink food items
+### drinks
+- name:
+  - [tea name] milk tea
+  - [tea name] Straight tea
+- aspects
+  - Leave type
+  - sugar level (Full, Less, Half, Slight, No)
+  - ice level (Full, Less, Half, Slight, No, Warm)
+  - cream
+- Texture layers (cold)
+  - cup
+  - drink (colorable)
+  - sugar level indicator (maybe lid design?)
+  - ice level
+  - boba
+- Texture layers (hot)
+  - cup
+  - drink (colorable)
+  - sugar level indicator (maybe cup design?)
+  - boba
+### Other
+- ice cubes
+- Tieguanyin Oolong Tea leaves
+- Sun Moon Lake Black Tea leaves
+- Biluochun Green Tea leaves
+- Black Tea leaves
+- rolled dough
+- dough balls
+- caramel
+- bubble pearls
+- drink cup
+- rolling pin
+## flavor profiles
+- all drinks are wet
+- if there are sugar then its sweet
+- if there is cream and it's more than half sweetness, then it's also heavy
+- if there are any ice then it's cold, else it's hot
+
+# boba recipes
+## Recipes
+- CookingPot_DrinkCup(tea leaves + water bottle) = hot tea
+- hot tea + ice cube = cold tea
+- CuttingBoard_RollingPin(dough) = rolled dough
+- CuttingBoard_Knife(rolled dough) = dough balls
+- FurnaceSmokeCampefire(sugar) = brown sugar
+- CookingPot(brown sugar + dough balls) = bubble pearls
+- Tea + cream = milk tea
+- (hot tea + hot milk tea) + (0-4) sugar = hot drink
+- (hot tea or cold tea or milk tea) + (0-4) sugar + (0-4) ice cubes = drink
+## Villager
+- Tieguanyin Oolong Tea leaves
+- Sun Moon Lake Black Tea leaves
+- Biluochun Green Tea leaves
+- drink cups
+## Market
+- Black Tea leaves
+
+# boba menu
+- create a new menu with all boba drinks
+## prices:
+- 1 drink: 1 tix
+- 2 drinks: 4 tix
+- 4 drinks: 16 tix
+
+# fruity teas
+## Names
+- [item name] [tea name] tea
+## Recipes
+- CookingPot(tea leaves + fruit juice) = fruit tea

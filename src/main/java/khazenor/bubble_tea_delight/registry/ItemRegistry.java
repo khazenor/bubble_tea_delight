@@ -1,5 +1,7 @@
 package khazenor.bubble_tea_delight.registry;
 
+import khazenor.bubble_tea_delight.BubbleTeaDelight;
+import khazenor.bubble_tea_delight.definitions.Drink;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.food.FoodProperties;
@@ -29,25 +31,36 @@ public class ItemRegistry {
     this.modEventBus = modEventBus;
   }
   public void register () {
-    this.registeredItems.add(
-      ITEMS.registerSimpleItem("example_item", new Item.Properties().food(new FoodProperties.Builder()
-        .alwaysEdible().nutrition(1).saturationModifier(2f).build()))
-    );
+    for(Drink drink: Drink.allDrinks()) {
+      this.registeredItems.add(
+        ITEMS.registerSimpleItem(
+          drink.itemId(),
+          new Item.Properties().food(
+            new FoodProperties.Builder()
+              .alwaysEdible()
+              .nutrition(drink.nutrition())
+              .saturationModifier(drink.saturationModifier())
+              .build()
+          )
+        )
+      );
+    }
     this.ITEMS.register(this.modEventBus);
     this.registerCreativeTabs();
   }
 
   private void registerCreativeTabs() {
-    for (DeferredItem<Item> item: this.registeredItems) {
-      this.CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
-              .title(Component.translatable("itemGroup.examplemod")) //The language key for the title of your CreativeModeTab
-              .withTabsBefore(CreativeModeTabs.COMBAT)
-              .icon(() -> item.get().getDefaultInstance())
-              .displayItems((parameters, output) -> {
-                output.accept(item.get()); // Add the example item to the tab. For your own tabs, this method is preferred over the event
-              }).build());
-      this.CREATIVE_MODE_TABS.register(modEventBus);
-    }
+    this.CREATIVE_MODE_TABS.register(BubbleTeaDelight.MODID, () -> CreativeModeTab.builder()
+      .title(Component.translatable("itemGroup.bubbleTeaDelight")) //The language key for the title of your CreativeModeTab
+      .withTabsBefore(CreativeModeTabs.COMBAT)
+      .icon(() -> this.registeredItems.getFirst().get().getDefaultInstance())
+      .displayItems((parameters, output) -> {
+        for (DeferredItem<Item> item: this.registeredItems) {
+          output.accept(item.get());
+        }
+      }).build()
+    );
+    this.CREATIVE_MODE_TABS.register(modEventBus);
 
   }
 }
