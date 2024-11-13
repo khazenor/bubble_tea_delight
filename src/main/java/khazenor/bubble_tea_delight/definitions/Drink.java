@@ -12,6 +12,11 @@ public class Drink {
   public static final String BILUOCHUN = "biluochun_green";
   public static final String ASSAM = "assam_black";
 
+  public static final String[] TEAS = {TIEQUANYIN, SUNMOONLAKE, BILUOCHUN, ASSAM};
+  public static final int[] ADJUSTMENT_LEVLES = {0, 1, 2, 3, 4};
+
+  public static final int[] TOPPING_LEVELS = {0, 1};
+
   public static final Map<String, String> TEA_NAMES = Map.ofEntries(
     entry(TIEQUANYIN, "Tiequanyin oolong"),
     entry(SUNMOONLAKE, "Sun Moon Lake black"),
@@ -28,27 +33,17 @@ public class Drink {
 
   public static final int BASE_NUTRITION = 2;
 
-  public static String[] teas() {
-    return new String[]{TIEQUANYIN, SUNMOONLAKE, BILUOCHUN, ASSAM};
-  }
-
-  public static int[] levels() {
-    return new int[]{0, 1, 2, 3, 4};
-  }
-
-  public static int[] bobaLevels() {
-    return new int[]{0, 1};
-  }
-
   public static ArrayList<Drink> allDrinks () {
     ArrayList<Drink> drinks = new ArrayList<Drink>();
-    for (String tea: teas()) {
-      for (int sugarLevel: levels()) {
-        for (int iceLevel: levels()) {
-          for (int bobaLevel: bobaLevels()) {
-            drinks.add(new Drink(
-              tea, sugarLevel, iceLevel, bobaLevel
-            ));
+    for (String tea: TEAS) {
+      for (int sugarLevel: ADJUSTMENT_LEVLES) {
+        for (int iceLevel: ADJUSTMENT_LEVLES) {
+          for (int bobaLevel: TOPPING_LEVELS) {
+            for (int creamLevel: TOPPING_LEVELS) {
+              drinks.add(new Drink(
+                tea, sugarLevel, iceLevel, bobaLevel, creamLevel
+              ));
+            }
           }
         }
       }
@@ -57,7 +52,7 @@ public class Drink {
   }
 
   public String itemId () {
-    return "%s_%ds_%di_%db".formatted(this.tea, this.sugarLevel, this.iceLevel, this.bobaLevel);
+    return "%s_%db_%dc_%ds_%di".formatted(this.tea, this.bobaLevel, this.creamLevel, this.sugarLevel, this.iceLevel);
   }
 
   public int nutrition () {
@@ -73,7 +68,8 @@ public class Drink {
     name += TEA_NAMES.get(this.tea);
     if (this.bobaLevel == 1) {
       name += " bubble";
-    } else {
+    }
+    if (this.creamLevel == 1) {
       name += " milk";
     }
     name += " tea";
@@ -105,15 +101,21 @@ public class Drink {
     return this.sugarLevel < 4;
   }
 
-  public Drink(String tea, int sugarLevel, int iceLevel, int bobaLevel) {
+  public boolean hasCreamer () {
+    return this.creamLevel == 1;
+  }
+
+  public Drink(String tea, int sugarLevel, int iceLevel, int bobaLevel, int creamLevel) {
     this.tea = tea;
     this.sugarLevel = sugarLevel;
     this.iceLevel = iceLevel;
     this.bobaLevel = bobaLevel;
+    this.creamLevel = creamLevel;
   }
 
   public String tea;
   public int sugarLevel;
   public int iceLevel;
   public int bobaLevel;
+  public int creamLevel;
 }

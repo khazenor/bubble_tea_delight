@@ -15,8 +15,9 @@ public class MyItemModelProvider extends ItemModelProvider {
   protected void registerModels() {
     String modelBase = "bubble_tea_delight:item/drinks";
     for(Drink drink: Drink.allDrinks()) {
+      String milkKey = drink.hasCreamer()? "milk_": "";
       withExistingParent(drink.itemId(), mcLoc("item/generated"))
-        .texture("layer0", "%s/tea/%s".formatted(modelBase, drink.tea))
+        .texture("layer0", "%s/%stea/%s".formatted(modelBase, milkKey, drink.tea))
         .texture("layer1", "%s/bubbles/%s".formatted(modelBase, drink.bobaLevel))
         .texture("layer2", "%s/lid_sugar_level/%s".formatted(modelBase, drink.sugarLevel))
         .texture("layer3", "%s/ice/%s".formatted(modelBase, drink.iceLevel))
