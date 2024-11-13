@@ -8,6 +8,8 @@ public class Drink {
   public static final String BILUOCHUN = "bailuochun";
   public static final String ASSAM = "assam";
 
+  public static final int BASE_NUTRITION = 2;
+
   public static String[] teas() {
     return new String[]{TIEQUANYIN, SUNMOONLAKE, BILUOCHUN, ASSAM};
   }
@@ -16,8 +18,8 @@ public class Drink {
     return new int[]{0, 1, 2, 3, 4};
   }
 
-  public static boolean[] booleanLevels() {
-    return new boolean[]{true, false};
+  public static int[] bobaLevels() {
+    return new int[]{0, 1};
   }
 
   public static ArrayList<Drink> allDrinks () {
@@ -25,9 +27,9 @@ public class Drink {
     for (String tea: teas()) {
       for (int sugarLevel: levels()) {
         for (int iceLevel: levels()) {
-          for (boolean hasBoba: booleanLevels()) {
+          for (int bobaLevel: bobaLevels()) {
             drinks.add(new Drink(
-              tea, sugarLevel, iceLevel, hasBoba
+              tea, sugarLevel, iceLevel, bobaLevel
             ));
           }
         }
@@ -37,27 +39,26 @@ public class Drink {
   }
 
   public String itemId () {
-    int hasBoba = this.hasBoba ? 1: 0;
-    return "%s_%ds_%di_%db".formatted(this.tea, this.sugarLevel, this.iceLevel, hasBoba);
+    return "%s_%ds_%di_%db".formatted(this.tea, this.sugarLevel, this.iceLevel, this.bobaLevel);
   }
 
   public int nutrition () {
-    return 1;
+    return BASE_NUTRITION + this.sugarLevel + this.bobaLevel * 2;
   }
 
   public float saturationModifier () {
-    return 2f;
+    return 0.5f + (float) this.bobaLevel / 2;
   }
 
-  public Drink(String tea, int sugarLevel, int iceLevel, boolean hasBoba) {
+  public Drink(String tea, int sugarLevel, int iceLevel, int bobaLevel) {
     this.tea = tea;
     this.sugarLevel = sugarLevel;
     this.iceLevel = iceLevel;
-    this.hasBoba = hasBoba;
+    this.bobaLevel = bobaLevel;
   }
 
   private String tea;
   private int sugarLevel;
   private int iceLevel;
-  private boolean hasBoba;
+  private int bobaLevel;
 }
