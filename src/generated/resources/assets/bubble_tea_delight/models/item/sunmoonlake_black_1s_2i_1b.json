@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "bubble_tea_delight:item/drinks/tea/sunmoonlake_black",
+    "layer1": "bubble_tea_delight:item/drinks/bubbles/1",
+    "layer2": "bubble_tea_delight:item/drinks/lid_sugar_level/1",
+    "layer3": "bubble_tea_delight:item/drinks/ice/2",
+    "layer4": "bubble_tea_delight:item/drinks/rim"
+  }
+}

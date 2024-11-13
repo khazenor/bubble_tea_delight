@@ -1,6 +1,7 @@
 package khazenor.bubble_tea_delight.registry;
 
 import khazenor.bubble_tea_delight.BubbleTeaDelight;
+import khazenor.bubble_tea_delight.definitions.Drink;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.model.generators.ItemModelProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -12,9 +13,14 @@ public class MyItemModelProvider extends ItemModelProvider {
 
   @Override
   protected void registerModels() {
-    System.out.println("registerModels");
-    withExistingParent("example_item", mcLoc("item/generated"))
-      .texture("layer0", "bubble_tea_delight:item/drinks/tea/tiequanyin_oolong")
-      .texture("layer1", "bubble_tea_delight:item/drinks/ice/3");
+    String modelBase = "bubble_tea_delight:item/drinks";
+    for(Drink drink: Drink.allDrinks()) {
+      withExistingParent(drink.itemId(), mcLoc("item/generated"))
+        .texture("layer0", "%s/tea/%s".formatted(modelBase, drink.tea))
+        .texture("layer1", "%s/bubbles/%s".formatted(modelBase, drink.bobaLevel))
+        .texture("layer2", "%s/lid_sugar_level/%s".formatted(modelBase, drink.sugarLevel))
+        .texture("layer3", "%s/ice/%s".formatted(modelBase, drink.iceLevel))
+        .texture("layer4", "%s/rim".formatted(modelBase));
+    }
   }
 }

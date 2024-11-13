@@ -3,10 +3,10 @@ package khazenor.bubble_tea_delight.definitions;
 import java.util.ArrayList;
 
 public class Drink {
-  public static final String TIEQUANYIN = "tiequanyin";
-  public static final String SUNMOONLAKE = "sunmoonlake";
-  public static final String BILUOCHUN = "bailuochun";
-  public static final String ASSAM = "assam";
+  public static final String TIEQUANYIN = "tiequanyin_oolong";
+  public static final String SUNMOONLAKE = "sunmoonlake_black";
+  public static final String BILUOCHUN = "biluochun_green";
+  public static final String ASSAM = "assam_black";
 
   public static final int BASE_NUTRITION = 2;
 
@@ -57,8 +57,8 @@ public class Drink {
     this.bobaLevel = bobaLevel;
   }
 
-  private String tea;
-  private int sugarLevel;
-  private int iceLevel;
-  private int bobaLevel;
+  public String tea;
+  public int sugarLevel;
+  public int iceLevel;
+  public int bobaLevel;
 }
