@@ -19,6 +19,7 @@ public class ItemRegistry {
   private static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
     DeferredRegister.create(Registries.CREATIVE_MODE_TAB, BubbleTeaDelight.MODID);
   private static final HashMap<String, DeferredItem<Item>> registeredItemMap = new HashMap<>();
+  private static final HashMap<DeferredItem<Item>, String> itemNameMap = new HashMap<>();
   private static final DeferredRegister.Items ITEMS_REGISTER =
     DeferredRegister.createItems(BubbleTeaDelight.MODID);
 
@@ -30,7 +31,18 @@ public class ItemRegistry {
     return getDeferredItem(drink.itemId());
   }
 
+  public static String getItemEnUs (DeferredItem<Item> item) {
+    return itemNameMap.get(item);
+  }
+
   public static void register () {
+    registerDrinks();
+
+    ITEMS_REGISTER.register(BubbleTeaDelight.modEventBus);
+    registerCreativeTabs();
+  }
+
+  private static void registerDrinks () {
     for(Drink drink: Drink.allDrinks()) {
       DeferredItem<Item> drinkItem = ITEMS_REGISTER.registerSimpleItem(
         drink.itemId(),
@@ -47,9 +59,12 @@ public class ItemRegistry {
         drink.itemId(),
         drinkItem
       );
+
+      itemNameMap.put(
+        drinkItem,
+        drink.nameEnUs()
+      );
     }
-    ITEMS_REGISTER.register(BubbleTeaDelight.modEventBus);
-    registerCreativeTabs();
   }
 
   private static void registerCreativeTabs() {
