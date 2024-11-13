@@ -1,6 +1,6 @@
 package khazenor.bubble_tea_delight.events;
 
-import khazenor.bubble_tea_delight.registry.MyItemModelProvider;
+import khazenor.bubble_tea_delight.data_gen.MyItemModelProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.SubscribeEvent;

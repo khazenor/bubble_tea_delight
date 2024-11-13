@@ -1,4 +1,4 @@
-package khazenor.bubble_tea_delight.registry;
+package khazenor.bubble_tea_delight.data_gen;
 
 import khazenor.bubble_tea_delight.BubbleTeaDelight;
 import khazenor.bubble_tea_delight.definitions.Drink;
