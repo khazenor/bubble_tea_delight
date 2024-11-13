@@ -11,11 +11,12 @@ import net.neoforged.fml.common.Mod;
 public class BubbleTeaDelight
 {
     public static final String MODID = "bubble_tea_delight";
+    public static IEventBus modEventBus;
 
-    public BubbleTeaDelight(IEventBus modEventBus)
+    public BubbleTeaDelight(IEventBus modEventBusVar)
     {
-      ItemRegistry itemRegistry = new ItemRegistry(MODID, modEventBus);
-      itemRegistry.register();
+      modEventBus = modEventBusVar;
+      ItemRegistry.register();
       modEventBus.register(EventHandler.class);
     }
 }

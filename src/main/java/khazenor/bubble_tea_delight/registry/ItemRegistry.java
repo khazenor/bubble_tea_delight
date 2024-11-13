@@ -8,59 +8,64 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
-import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 public class ItemRegistry {
 
-  private String MODID;
-  private DeferredRegister.Items ITEMS;
-  private DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS;
+  private static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
+    DeferredRegister.create(Registries.CREATIVE_MODE_TAB, BubbleTeaDelight.MODID);
+  private static final HashMap<String, DeferredItem<Item>> registeredItemMap = new HashMap<>();
+  private static final DeferredRegister.Items ITEMS_REGISTER =
+    DeferredRegister.createItems(BubbleTeaDelight.MODID);
 
-  private List<DeferredItem<Item>> registeredItems = new ArrayList<>();
-  private IEventBus modEventBus;
-
-  public ItemRegistry (String MODID, IEventBus modEventBus) {
-    this.MODID = MODID;
-    this.ITEMS = DeferredRegister.createItems(this.MODID);
-    this.CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, this.MODID);
-    this.modEventBus = modEventBus;
+  public static DeferredItem<Item> getDeferredItem (String itemId) {
+    return registeredItemMap.get(itemId);
   }
-  public void register () {
+
+  public static DeferredItem<Item> getDeferredItem (Drink drink) {
+    return getDeferredItem(drink.itemId());
+  }
+
+  public static void register () {
     for(Drink drink: Drink.allDrinks()) {
-      this.registeredItems.add(
-        ITEMS.registerSimpleItem(
-          drink.itemId(),
-          new Item.Properties().food(
-            new FoodProperties.Builder()
-              .alwaysEdible()
-              .nutrition(drink.nutrition())
-              .saturationModifier(drink.saturationModifier())
-              .build()
-          )
+      DeferredItem<Item> drinkItem = ITEMS_REGISTER.registerSimpleItem(
+        drink.itemId(),
+        new Item.Properties().food(
+          new FoodProperties.Builder()
+            .alwaysEdible()
+            .nutrition(drink.nutrition())
+            .saturationModifier(drink.saturationModifier())
+            .build()
         )
       );
+
+      registeredItemMap.put(
+        drink.itemId(),
+        drinkItem
+      );
     }
-    this.ITEMS.register(this.modEventBus);
-    this.registerCreativeTabs();
+    ITEMS_REGISTER.register(BubbleTeaDelight.modEventBus);
+    registerCreativeTabs();
   }
 
-  private void registerCreativeTabs() {
-    this.CREATIVE_MODE_TABS.register(BubbleTeaDelight.MODID, () -> CreativeModeTab.builder()
+  private static void registerCreativeTabs() {
+    ArrayList<DeferredItem<Item>> registeredItemList = new ArrayList<>(registeredItemMap.values());
+
+    CREATIVE_MODE_TABS.register(BubbleTeaDelight.MODID, () -> CreativeModeTab.builder()
       .title(Component.translatable("itemGroup.bubbleTeaDelight")) //The language key for the title of your CreativeModeTab
       .withTabsBefore(CreativeModeTabs.COMBAT)
-      .icon(() -> this.registeredItems.getFirst().get().getDefaultInstance())
+      .icon(() -> registeredItemList.getFirst().get().getDefaultInstance())
       .displayItems((parameters, output) -> {
-        for (DeferredItem<Item> item: this.registeredItems) {
+        for (DeferredItem<Item> item: registeredItemList) {
           output.accept(item.get());
         }
       }).build()
     );
-    this.CREATIVE_MODE_TABS.register(modEventBus);
+    CREATIVE_MODE_TABS.register(BubbleTeaDelight.modEventBus);
 
   }
 }
