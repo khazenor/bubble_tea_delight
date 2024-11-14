@@ -1,7 +1,7 @@
 package khazenor.bubble_tea_delight;
 
 import khazenor.bubble_tea_delight.events.EventHandler;
-import khazenor.bubble_tea_delight.registry.ItemRegistry;
+import khazenor.bubble_tea_delight.registry.BtdItemRegistry;
 
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
@@ -16,7 +16,7 @@ public class BubbleTeaDelight
     public BubbleTeaDelight(IEventBus modEventBusVar)
     {
       modEventBus = modEventBusVar;
-      ItemRegistry.register();
+      BtdItemRegistry.register();
       modEventBus.register(EventHandler.class);
     }
 }

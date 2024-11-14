@@ -15,7 +15,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ItemRegistry {
+public class BtdItemRegistry {
 
   private static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
     DeferredRegister.create(Registries.CREATIVE_MODE_TAB, BubbleTeaDelight.MODID);
