@@ -13,19 +13,13 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class BtdItemRegistry {
 
   private static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
     DeferredRegister.create(Registries.CREATIVE_MODE_TAB, BubbleTeaDelight.MODID);
-  private static final HashMap<String, DeferredItem<Item>> registeredItemMap = new HashMap<>();
   private static final DeferredRegister.Items ITEMS_REGISTER =
     DeferredRegister.createItems(BubbleTeaDelight.MODID);
-
-  public static DeferredItem<Item> getDeferredItem (String itemId) {
-    return registeredItemMap.get(itemId);
-  }
 
   public static void register () {
     registerDrinks();
@@ -47,17 +41,14 @@ public class BtdItemRegistry {
         )
       );
 
-      registeredItemMap.put(
-        drink.itemId,
-        drinkItem
-      );
+      RegisteredItems.addItem(drink.itemId, drinkItem);
 
       MyLanguageProvider.defineItem(drinkItem, drink.nameEnUs);
     }
   }
 
   private static void registerCreativeTabs() {
-    ArrayList<DeferredItem<Item>> registeredItemList = new ArrayList<>(registeredItemMap.values());
+    ArrayList<DeferredItem<Item>> registeredItemList = RegisteredItems.getAllRegisteredItems();
 
     CREATIVE_MODE_TABS.register(BubbleTeaDelight.MODID, () -> CreativeModeTab.builder()
       .title(Component.translatable("itemGroup.bubbleTeaDelight")) //The language key for the title of your CreativeModeTab
