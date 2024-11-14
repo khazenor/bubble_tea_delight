@@ -1,12 +1,11 @@
 package khazenor.bubble_tea_delight.definitions;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 
 import static java.util.Map.entry;
 
-public class Drink {
+public class Drink extends FoodWrapper {
   public static final String TIEQUANYIN = "tiequanyin_oolong";
   public static final String SUNMOONLAKE = "sunmoonlake_black";
   public static final String BILUOCHUN = "biluochun_green";
@@ -34,12 +33,12 @@ public class Drink {
   public static final int BASE_NUTRITION = 2;
 
   public static ArrayList<Drink> allDrinks () {
-    ArrayList<Drink> drinks = new ArrayList<Drink>();
+    ArrayList<Drink> drinks = new ArrayList<>();
     for (String tea: TEAS) {
-      for (int sugarLevel: ADJUSTMENT_LEVLES) {
-        for (int iceLevel: ADJUSTMENT_LEVLES) {
-          for (int bobaLevel: TOPPING_LEVELS) {
-            for (int creamLevel: TOPPING_LEVELS) {
+      for (int bobaLevel: TOPPING_LEVELS) {
+        for (int creamLevel: TOPPING_LEVELS) {
+          for (int sugarLevel: ADJUSTMENT_LEVLES) {
+            for (int iceLevel: ADJUSTMENT_LEVLES) {
               drinks.add(new Drink(
                 tea, sugarLevel, iceLevel, bobaLevel, creamLevel
               ));
@@ -51,19 +50,56 @@ public class Drink {
     return drinks;
   }
 
-  public String itemId () {
+  public boolean hasSugarIceAdjustments() {
+    return this.hasIceAdjustment() || this.hasSugarAdjustment();
+  }
+
+  public boolean hasIceAdjustment () {
+    return this.iceLevel < 4;
+  }
+
+  public boolean hasSugarAdjustment () {
+    return this.sugarLevel < 4;
+  }
+
+  public boolean hasCreamer () {
+    return this.creamLevel == 1;
+  }
+
+  public Drink(String tea, int sugarLevel, int iceLevel, int bobaLevel, int creamLevel) {
+    super();
+    this.tea = tea;
+    this.sugarLevel = sugarLevel;
+    this.iceLevel = iceLevel;
+    this.bobaLevel = bobaLevel;
+    this.creamLevel = creamLevel;
+
+    // super fields
+    this.itemId = this.getItemId();
+    this.nameEnUs = this.getNameEnUs();
+    this.nutrition = this.getNutrition();
+    this.saturationModifier = this.getSaturationModifier();
+  }
+
+  public String tea;
+  public int sugarLevel;
+  public int iceLevel;
+  public int bobaLevel;
+  public int creamLevel;
+
+  private String getItemId () {
     return "%s_%db_%dc_%ds_%di".formatted(this.tea, this.bobaLevel, this.creamLevel, this.sugarLevel, this.iceLevel);
   }
 
-  public int nutrition () {
+  private int getNutrition () {
     return BASE_NUTRITION + this.sugarLevel + this.bobaLevel * 2;
   }
 
-  public float saturationModifier () {
+  private float getSaturationModifier () {
     return 0.5f + (float) this.bobaLevel / 2;
   }
 
-  public String nameEnUs () {
+  private String getNameEnUs () {
     String name = "";
     name += TEA_NAMES.get(this.tea);
     if (this.bobaLevel == 1) {
@@ -88,34 +124,4 @@ public class Drink {
     }
     return name;
   }
-
-  public boolean hasSugarIceAdjustments() {
-    return this.hasIceAdjustment() || this.hasSugarAdjustment();
-  }
-
-  public boolean hasIceAdjustment () {
-    return this.iceLevel < 4;
-  }
-
-  public boolean hasSugarAdjustment () {
-    return this.sugarLevel < 4;
-  }
-
-  public boolean hasCreamer () {
-    return this.creamLevel == 1;
-  }
-
-  public Drink(String tea, int sugarLevel, int iceLevel, int bobaLevel, int creamLevel) {
-    this.tea = tea;
-    this.sugarLevel = sugarLevel;
-    this.iceLevel = iceLevel;
-    this.bobaLevel = bobaLevel;
-    this.creamLevel = creamLevel;
-  }
-
-  public String tea;
-  public int sugarLevel;
-  public int iceLevel;
-  public int bobaLevel;
-  public int creamLevel;
 }

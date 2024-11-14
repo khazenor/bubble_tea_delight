@@ -28,7 +28,7 @@ public class ItemRegistry {
   }
 
   public static DeferredItem<Item> getDeferredItem (Drink drink) {
-    return getDeferredItem(drink.itemId());
+    return getDeferredItem(drink.itemId);
   }
 
   public static String getItemEnUs (DeferredItem<Item> item) {
@@ -45,24 +45,24 @@ public class ItemRegistry {
   private static void registerDrinks () {
     for(Drink drink: Drink.allDrinks()) {
       DeferredItem<Item> drinkItem = ITEMS_REGISTER.registerSimpleItem(
-        drink.itemId(),
+        drink.itemId,
         new Item.Properties().food(
           new FoodProperties.Builder()
             .alwaysEdible()
-            .nutrition(drink.nutrition())
-            .saturationModifier(drink.saturationModifier())
+            .nutrition(drink.nutrition)
+            .saturationModifier(drink.saturationModifier)
             .build()
         )
       );
 
       registeredItemMap.put(
-        drink.itemId(),
+        drink.itemId,
         drinkItem
       );
 
       itemNameMap.put(
         drinkItem,
-        drink.nameEnUs()
+        drink.nameEnUs
       );
     }
   }
