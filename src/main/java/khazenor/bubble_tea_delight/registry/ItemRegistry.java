@@ -1,6 +1,7 @@
 package khazenor.bubble_tea_delight.registry;
 
 import khazenor.bubble_tea_delight.BubbleTeaDelight;
+import khazenor.bubble_tea_delight.data_gen.MyLanguageProvider;
 import khazenor.bubble_tea_delight.definitions.Drink;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -19,20 +20,11 @@ public class ItemRegistry {
   private static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
     DeferredRegister.create(Registries.CREATIVE_MODE_TAB, BubbleTeaDelight.MODID);
   private static final HashMap<String, DeferredItem<Item>> registeredItemMap = new HashMap<>();
-  private static final HashMap<DeferredItem<Item>, String> itemNameMap = new HashMap<>();
   private static final DeferredRegister.Items ITEMS_REGISTER =
     DeferredRegister.createItems(BubbleTeaDelight.MODID);
 
   public static DeferredItem<Item> getDeferredItem (String itemId) {
     return registeredItemMap.get(itemId);
-  }
-
-  public static DeferredItem<Item> getDeferredItem (Drink drink) {
-    return getDeferredItem(drink.itemId);
-  }
-
-  public static String getItemEnUs (DeferredItem<Item> item) {
-    return itemNameMap.get(item);
   }
 
   public static void register () {
@@ -60,10 +52,7 @@ public class ItemRegistry {
         drinkItem
       );
 
-      itemNameMap.put(
-        drinkItem,
-        drink.nameEnUs
-      );
+      MyLanguageProvider.defineItem(drinkItem, drink.nameEnUs);
     }
   }
 
