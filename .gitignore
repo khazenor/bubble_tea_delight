@@ -28,3 +28,4 @@ repo
 *.cache*
 $notes/todo.md
 $notes/notes.md
+$notes/assets
