@@ -398,5 +398,6 @@
   "item.bubble_tea_delight.tiequanyin_oolong_1b_1c_4s_1i": "Tiequanyin oolong bubble milk tea (slight ice)",
   "item.bubble_tea_delight.tiequanyin_oolong_1b_1c_4s_2i": "Tiequanyin oolong bubble milk tea (half ice)",
   "item.bubble_tea_delight.tiequanyin_oolong_1b_1c_4s_3i": "Tiequanyin oolong bubble milk tea (less ice)",
-  "item.bubble_tea_delight.tiequanyin_oolong_1b_1c_4s_4i": "Tiequanyin oolong bubble milk tea"
+  "item.bubble_tea_delight.tiequanyin_oolong_1b_1c_4s_4i": "Tiequanyin oolong bubble milk tea",
+  "itemGroup.bubbleTeaDelightDrinks": "Bubble Tea Delight Drinks"
 }
