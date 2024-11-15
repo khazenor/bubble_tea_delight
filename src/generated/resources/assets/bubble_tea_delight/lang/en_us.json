@@ -1,4 +1,5 @@
 {
+  "item.bubble_tea_delight.assam_black": "Assam Black Tea",
   "item.bubble_tea_delight.assam_black_0b_0c_0s_0i": "Assam black tea (no sugar, no ice)",
   "item.bubble_tea_delight.assam_black_0b_0c_0s_1i": "Assam black tea (no sugar, slight ice)",
   "item.bubble_tea_delight.assam_black_0b_0c_0s_2i": "Assam black tea (no sugar, half ice)",
@@ -99,6 +100,7 @@
   "item.bubble_tea_delight.assam_black_1b_1c_4s_2i": "Assam black bubble milk tea (half ice)",
   "item.bubble_tea_delight.assam_black_1b_1c_4s_3i": "Assam black bubble milk tea (less ice)",
   "item.bubble_tea_delight.assam_black_1b_1c_4s_4i": "Assam black bubble milk tea",
+  "item.bubble_tea_delight.biluochun_green": "Biluochun Green Tea",
   "item.bubble_tea_delight.biluochun_green_0b_0c_0s_0i": "Biluochun green tea (no sugar, no ice)",
   "item.bubble_tea_delight.biluochun_green_0b_0c_0s_1i": "Biluochun green tea (no sugar, slight ice)",
   "item.bubble_tea_delight.biluochun_green_0b_0c_0s_2i": "Biluochun green tea (no sugar, half ice)",
@@ -199,6 +201,13 @@
   "item.bubble_tea_delight.biluochun_green_1b_1c_4s_2i": "Biluochun green bubble milk tea (half ice)",
   "item.bubble_tea_delight.biluochun_green_1b_1c_4s_3i": "Biluochun green bubble milk tea (less ice)",
   "item.bubble_tea_delight.biluochun_green_1b_1c_4s_4i": "Biluochun green bubble milk tea",
+  "item.bubble_tea_delight.brown_sugar": "Brown Sugar",
+  "item.bubble_tea_delight.bubble_pearls": "Bubble Pearls",
+  "item.bubble_tea_delight.dough_balls": "Dough Balls",
+  "item.bubble_tea_delight.drink_cup": "Drink Cup",
+  "item.bubble_tea_delight.rolled_dough": "Rolled Dough",
+  "item.bubble_tea_delight.rolling_pin": "Rolling Pin",
+  "item.bubble_tea_delight.sunmoonlake_black": "Sun Moon Lake Black Tea",
   "item.bubble_tea_delight.sunmoonlake_black_0b_0c_0s_0i": "Sun Moon Lake black tea (no sugar, no ice)",
   "item.bubble_tea_delight.sunmoonlake_black_0b_0c_0s_1i": "Sun Moon Lake black tea (no sugar, slight ice)",
   "item.bubble_tea_delight.sunmoonlake_black_0b_0c_0s_2i": "Sun Moon Lake black tea (no sugar, half ice)",
@@ -299,6 +308,7 @@
   "item.bubble_tea_delight.sunmoonlake_black_1b_1c_4s_2i": "Sun Moon Lake black bubble milk tea (half ice)",
   "item.bubble_tea_delight.sunmoonlake_black_1b_1c_4s_3i": "Sun Moon Lake black bubble milk tea (less ice)",
   "item.bubble_tea_delight.sunmoonlake_black_1b_1c_4s_4i": "Sun Moon Lake black bubble milk tea",
+  "item.bubble_tea_delight.tiequanyin_oolong": "Tiequanyin Oolong Tea",
   "item.bubble_tea_delight.tiequanyin_oolong_0b_0c_0s_0i": "Tiequanyin oolong tea (no sugar, no ice)",
   "item.bubble_tea_delight.tiequanyin_oolong_0b_0c_0s_1i": "Tiequanyin oolong tea (no sugar, slight ice)",
   "item.bubble_tea_delight.tiequanyin_oolong_0b_0c_0s_2i": "Tiequanyin oolong tea (no sugar, half ice)",
@@ -399,5 +409,6 @@
   "item.bubble_tea_delight.tiequanyin_oolong_1b_1c_4s_2i": "Tiequanyin oolong bubble milk tea (half ice)",
   "item.bubble_tea_delight.tiequanyin_oolong_1b_1c_4s_3i": "Tiequanyin oolong bubble milk tea (less ice)",
   "item.bubble_tea_delight.tiequanyin_oolong_1b_1c_4s_4i": "Tiequanyin oolong bubble milk tea",
+  "itemGroup.bubbleTeaDelight": "Bubble Tea Delight",
   "itemGroup.bubbleTeaDelightDrinks": "Bubble Tea Delight Drinks"
 }

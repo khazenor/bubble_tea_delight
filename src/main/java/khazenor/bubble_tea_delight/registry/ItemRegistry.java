@@ -12,11 +12,20 @@ import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Map;
 
 public class ItemRegistry {
+  public void registerItemWithDefaultName(String itemId, String creativeTabNameTrans) {
+    String name = ItemWrapper.getDefaultItemName(itemId);
+    registerItem(itemId, name, creativeTabNameTrans);
+  }
+  public void registerItem(String itemId, String nameEnUS, String creativeTabNameTrans) {
+    ItemWrapper itemWrapper = new ItemWrapper(itemId, nameEnUS);
+    this.registerItem(itemWrapper, creativeTabNameTrans);
+  }
   public void registerItem(ItemWrapper itemWrapper, String creativeTabNameTrans) {
     DeferredItem<Item> item = this.itemRegistry.registerSimpleItem(
       itemWrapper.itemId
@@ -79,8 +88,9 @@ public class ItemRegistry {
     for (String creativeTabNameTrans: this.creativeTabItems.keySet()) {
       ArrayList<DeferredItem<Item>> tabItems = creativeTabItems.get(creativeTabNameTrans);
       DeferredItem<Item> iconItem = tabItems.getFirst();
+      String registryName = creativeTabNameTrans.toLowerCase();
 
-      this.creativeTabRegistry.register(this.MODID, () -> CreativeModeTab.builder()
+      this.creativeTabRegistry.register(registryName, () -> CreativeModeTab.builder()
         .title(Component.translatable(creativeTabNameTrans))
         .icon(() -> iconItem.get().getDefaultInstance())
         .displayItems((parameters, output) -> {
