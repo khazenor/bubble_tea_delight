@@ -40,7 +40,7 @@
 
 # boba recipes
 ## Recipes
-- CookingPot_DrinkCup(tea leaves + water bottle) = hot tea
+- CookingPot_DrinkCup(tea leaves + water bottle) = tea
 - hot tea + ice cube = cold tea
 - CuttingBoard_RollingPin(dough) = rolled dough
 - CuttingBoard_Knife(rolled dough) = dough balls
